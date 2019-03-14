@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrum Board</title>
+</head>
+<body ng-app="scrumboard">
+
+    {% verbatim %}
+    <div ng-controller="ScrumBoardController">
+        <div ng-repeat="list in data">
+            <h3>{{ list.name }}</h3>
+            <ul>
+                <li ng-repeat="card in list.cards">{{ card.title }}</li>
+            </ul>
+            <input type="text" ng-model="new_card" />
+            <button type="text" ng-click="add(list, new_card)">+</button>
+        </div>
+    </div>
+    {% endverbatim %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <script src="{% static 'board/index.js' %}"></script>
+
+</body>
+</html>
