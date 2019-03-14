@@ -7,14 +7,21 @@
 
         $scope.add = function (list, card_title) {
             var card = {
+                list: list.id,
                 title: card_title,
             };
 
-            list.cards.push(card)
+            $http.post('api/cards/', card).then(function (response) {
+                list.cards.push(response.data);
+            },
+                function () {
+                    alert('Could Not Save Card');
+                });
+
         };
 
         $scope.data = [];
-        $http.get('/api/lists').then(function (response) {
+        $http.get('/api/lists/').then(function (response) {
             $scope.data = response.data;
         })
     }

@@ -11,6 +11,7 @@
     <div ng-controller="ScrumBoardController">
         <div ng-repeat="list in data">
             <h3>{{ list.name }}</h3>
+
             <ul>
                 <li ng-repeat="card in list.cards">{{ card.title }}</li>
             </ul>
