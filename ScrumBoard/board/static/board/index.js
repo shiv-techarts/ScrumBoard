@@ -23,7 +23,10 @@
         $scope.data = [];
         $http.get('/api/lists/').then(function (response) {
             $scope.data = response.data;
-        })
+        },
+            function () {
+                alert('Not Logged In');
+            });
     }
 
 })();

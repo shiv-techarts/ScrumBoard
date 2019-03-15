@@ -4,25 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Scrum Board</title>
+
+    <link rel="stylesheet", type="text/css" href="{% static 'board/index.css' %}">
 </head>
 <body ng-app="scrumboard">
 
     {% verbatim %}
-    <div ng-controller="ScrumBoardController">
-        <div ng-repeat="list in data">
-            <h3>{{ list.name }}</h3>
+    <div class="container" ng-controller="ScrumBoardController">
+        <div class="list" ng-repeat="list in data">
+                <h3>{{ list.name }}</h3>
 
-            <ul>
-                <li ng-repeat="card in list.cards">{{ card.title }}</li>
-            </ul>
-            <input type="text" ng-model="new_card" />
-            <button type="text" ng-click="add(list, new_card)">+</button>
+                <ul>
+                    <li ng-repeat="card in list.cards">
+                        <scrumboard-card></scrumboard-card>
+                    </li>
+                </ul>
+            <div class="flex">
+                <input type="text" ng-model="new_card" />
+                <button type="text" ng-click="add(list, new_card)">+</button>
+            </div>
         </div>
     </div>
     {% endverbatim %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
     <script src="{% static 'board/index.js' %}"></script>
+    <script src="{% static 'board/scrumboard.config.js' %}"></script>
+    <script src="{% static 'board/card.directive.js' %}"></script>
 
 </body>
 </html>
